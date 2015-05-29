@@ -77,7 +77,7 @@ namespace FluffyNet
         public static byte[] GetBytes(string str)
         {
             byte[] bytes = new byte[str.Length];
-            Encoding.ASCII.GetBytes(str, 0, str.Length, bytes, 3);  
+            Encoding.ASCII.GetBytes(str, 0, str.Length, bytes, 0);  
             return bytes;
         }
 
