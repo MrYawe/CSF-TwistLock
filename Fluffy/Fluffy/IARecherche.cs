@@ -110,6 +110,8 @@ namespace Fluffy
         {
             bool res;
             int ligne = 0;
+            int colonne = 0;
+            int point = 0;
             res = (action.Length == 3 && char.IsLetter(action[1]) || (action.Length == 4 && char.IsLetter(action[2])));
             
             if(action.Length == 3 && res)
@@ -121,8 +123,24 @@ namespace Fluffy
                 ligne = int.Parse(action.Substring(0, 2));
             }
 
-            int colonne = action[1] - 'A' - 1;
-            int point = int.Parse(action[2].ToString());
+            if(action.Length == 3 && res)
+            {
+                colonne = action[1] - 'A' - 1;
+            }
+            else if (action.Length == 4 && res)
+            {
+                colonne = action[2] - 'A' - 1;
+            }
+
+            if (action.Length == 3 && res)
+            {
+                point = int.Parse(action[2].ToString());
+            }
+            else if (action.Length == 4 && res)
+            {
+                point = int.Parse(action[3].ToString());
+            }
+            
 
             res = (ligne >= 0 && ligne <= Plateau.getInstance().nbLignes - 1 && res);
             res = (colonne >= 0 && colonne <= Plateau.getInstance().nbColonnes - 1 && res);

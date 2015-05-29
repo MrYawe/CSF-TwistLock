@@ -33,7 +33,7 @@ namespace Fluffy
                 }
             }*/
 
-            freePoints = Plateau.getInstance().points;
+            freePoints = new List<Point>(Plateau.getInstance().points);
             /*SortPoint sp = new SortPoint();
             freePoints.Sort(sp);*/
         }
