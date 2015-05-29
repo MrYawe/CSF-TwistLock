@@ -14,50 +14,55 @@ namespace Fluffy
 
             if(IARecherche.isActionValid(action))
             {
-                int ligne = int.Parse(action[0].ToString());
+                int ligne = int.Parse(action.Length == 3 ? action[0].ToString() : action.Substring(0, 2));
                 int colonne = action[1] - 'A' - 1;
                 int point = int.Parse(action[2].ToString());
 
                 Conteneur cont = Plateau.getInstance().conteneurs[ligne,colonne];
-                cont.coins[point].statut = Point.status.ME;
+                
+                cont.coins[point].statut = Point.status.YOU;
+                List<Conteneur> tabCont = cont.coins[point].conteneurs;
 
                 IAInit.freePoints.Remove(cont.coins[point]);
 
-                int pointEnnemi = 0;
-                int pointMoi = 0;
-
-                if (cont.coins[0].statut == Point.status.YOU) { pointEnnemi++; }
-                else if (cont.coins[0].statut == Point.status.ME) { pointMoi++; }
-
-                if (cont.coins[1].statut == Point.status.YOU) { pointEnnemi++; }
-                else if (cont.coins[1].statut == Point.status.ME) { pointMoi++; }
-
-                if (cont.coins[2].statut == Point.status.YOU) { pointEnnemi++; }
-                else if (cont.coins[2].statut == Point.status.ME) { pointMoi++; }
-
-                if (cont.coins[3].statut == Point.status.YOU) { pointEnnemi++; }
-                else if (cont.coins[3].statut == Point.status.ME) { pointMoi++; }
-
-                if (pointEnnemi > pointMoi)
+                foreach(Conteneur c in tabCont)
                 {
-                    cont.statut = Point.status.YOU;
-                    cont.coins[0].valeur -= cont.valeur;
-                    cont.coins[1].valeur -= cont.valeur;
-                    cont.coins[2].valeur -= cont.valeur;
-                    cont.coins[3].valeur -= cont.valeur;
-                }
-                else if (pointEnnemi < pointMoi)
-                {
-                    cont.statut = Point.status.ME;
-                    cont.coins[0].valeur += cont.valeur;
-                    cont.coins[1].valeur += cont.valeur;
-                    cont.coins[2].valeur += cont.valeur;
-                    cont.coins[3].valeur += cont.valeur;
-                }
-                else
-                {
-                    cont.statut = Point.status.NONE;
-                }
+                    int pointEnnemi = 0;
+                    int pointMoi = 0;
+
+                    if (c.coins[0].statut == Point.status.YOU) { pointEnnemi++; }
+                    else if (c.coins[0].statut == Point.status.ME) { pointMoi++; }
+
+                    if (c.coins[1].statut == Point.status.YOU) { pointEnnemi++; }
+                    else if (c.coins[1].statut == Point.status.ME) { pointMoi++; }
+
+                    if (c.coins[2].statut == Point.status.YOU) { pointEnnemi++; }
+                    else if (c.coins[2].statut == Point.status.ME) { pointMoi++; }
+
+                    if (c.coins[3].statut == Point.status.YOU) { pointEnnemi++; }
+                    else if (c.coins[3].statut == Point.status.ME) { pointMoi++; }
+
+                    if (pointEnnemi > pointMoi)
+                    {
+                        c.statut = Point.status.YOU;
+                        c.coins[0].valeur -= cont.valeur;
+                        c.coins[1].valeur -= cont.valeur;
+                        c.coins[2].valeur -= cont.valeur;
+                        c.coins[3].valeur -= cont.valeur;
+                    }
+                    else if (pointEnnemi < pointMoi)
+                    {
+                        c.statut = Point.status.ME;
+                        c.coins[0].valeur += cont.valeur;
+                        c.coins[1].valeur += cont.valeur;
+                        c.coins[2].valeur += cont.valeur;
+                        c.coins[3].valeur += cont.valeur;
+                    }
+                    else
+                    {
+                        c.statut = Point.status.NONE;
+                    }
+                }   
             }
             else
             {
