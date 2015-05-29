@@ -9,7 +9,7 @@ namespace Fluffy
     class IAInit
     {
         public static List<Point> freePoints {get;set;} 
-        public static Conteneur[][] freeConteneurs {get;set;}
+        public static Conteneur[,] freeConteneurs {get;set;}
         public IAInit()
         {
             freeConteneurs = Plateau.getInstance().conteneurs;
