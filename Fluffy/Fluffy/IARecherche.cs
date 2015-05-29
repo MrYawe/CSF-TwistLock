@@ -29,7 +29,7 @@ namespace Fluffy
             for (int i = 0; i < IAInit.freePoints.Count; i++)
             {
                 List<Conteneur> parents = IAInit.freePoints[i].conteneurs;
-                for (int j = 0; j < parents.Count; i++)
+                for (int j = 0; j < parents.Count; j++)
                 {
                     String temp = parents[j].ligne.ToString() + parents[j].colonne.ToString();
                     Point ptTemp = IAInit.freePoints[i];
