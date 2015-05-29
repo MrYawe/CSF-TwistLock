@@ -22,11 +22,11 @@ namespace Fluffy
                     {
                         for(int l = 0; l < freeConteneurs.GetLength(1); l++)
                         {
-                            if(freeConteneurs[i][j].valeur < freeConteneurs[k][l].valeur)
+                            if(freeConteneurs[i,j].valeur < freeConteneurs[k,l].valeur)
                             {
-                                Conteneur temp = new Conteneur(freeConteneurs[i][j].valeur, freeConteneurs[i][j].statut, freeConteneurs[i][j].coins);
-                                freeConteneurs[i][j] = freeConteneurs[k][l];
-                                freeConteneurs[k][l] = temp;
+                                Conteneur temp = new Conteneur(freeConteneurs[i,j].valeur, freeConteneurs[i,j].statut, freeConteneurs[i,j].coins);
+                                freeConteneurs[i,j] = freeConteneurs[k,l];
+                                freeConteneurs[k,l] = temp;
                             }
                         }
                     }
@@ -36,14 +36,6 @@ namespace Fluffy
             freePoints = Plateau.getInstance().points;
             SortPoint sp = new SortPoint();
             freePoints.Sort(sp);
-        }
-
-        public class SortConteneur : IComparer<Conteneur[]>
-        {
-            public int Compare(Conteneur x, Conteneur y)
-            {
-                return y.valeur - x.valeur;
-            }
         }
 
         public class SortPoint : IComparer<Point>

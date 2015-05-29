@@ -18,7 +18,7 @@ namespace Fluffy
                 int colonne = action[1] - 'A' - 1;
                 int point = int.Parse(action[2].ToString());
 
-                Conteneur cont = Plateau.getInstance().conteneurs[ligne][colonne];
+                Conteneur cont = Plateau.getInstance().conteneurs[ligne,colonne];
                 cont.coins[point].statut = Point.status.ME;
 
                 int pointEnnemi = 0;
