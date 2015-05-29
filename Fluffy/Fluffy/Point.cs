@@ -8,5 +8,9 @@ namespace Fluffy
 {
     class Point
     {
+       public Point()
+        {
+
+        }
     }
 }
