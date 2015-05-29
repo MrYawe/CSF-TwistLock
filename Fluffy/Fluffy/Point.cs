@@ -8,9 +8,9 @@ namespace Fluffy
 {
     class Point
     {
-        public enum status { NONE, ONE, TWO };
-        int valeur { get; set; }
-        status statut { get; set; }
+        public enum status { NONE, ME, YOU };
+        public int valeur { get; set; }
+        public status statut { get; set; } 
         
         public Point()
         {
