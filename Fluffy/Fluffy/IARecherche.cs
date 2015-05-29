@@ -48,6 +48,47 @@ namespace Fluffy
                 }
             }
             IAInit.freePoints.Remove(pt);
+
+            List<Conteneur> listCont = pt.conteneurs;
+
+            foreach (Conteneur c in listCont)
+            {
+                int pointEnnemi = 0;
+                int pointMoi = 0;
+
+                if (c.coins[0].statut == Point.status.YOU) { pointEnnemi++; }
+                else if (c.coins[0].statut == Point.status.ME) { pointMoi++; }
+
+                if (c.coins[1].statut == Point.status.YOU) { pointEnnemi++; }
+                else if (c.coins[1].statut == Point.status.ME) { pointMoi++; }
+
+                if (c.coins[2].statut == Point.status.YOU) { pointEnnemi++; }
+                else if (c.coins[2].statut == Point.status.ME) { pointMoi++; }
+
+                if (c.coins[3].statut == Point.status.YOU) { pointEnnemi++; }
+                else if (c.coins[3].statut == Point.status.ME) { pointMoi++; }
+
+                if (pointEnnemi > pointMoi)
+                {
+                    c.statut = Point.status.YOU;
+                    c.coins[0].valeur -= cont.valeur;
+                    c.coins[1].valeur -= cont.valeur;
+                    c.coins[2].valeur -= cont.valeur;
+                    c.coins[3].valeur -= cont.valeur;
+                }
+                else if (pointEnnemi < pointMoi)
+                {
+                    c.statut = Point.status.ME;
+                    c.coins[0].valeur += cont.valeur;
+                    c.coins[1].valeur += cont.valeur;
+                    c.coins[2].valeur += cont.valeur;
+                    c.coins[3].valeur += cont.valeur;
+                }
+                else
+                {
+                    c.statut = Point.status.NONE;
+                }
+            }
             return res;
         }
 
