@@ -68,11 +68,18 @@ namespace Fluffy
         public static bool isActionValid(string action)
         {
             bool res;
+            int ligne = 0;
+            res = (action.Length == 3 && char.IsLetter(action[1]) || (action.Length == 4 && char.IsLetter(action[2])));
+            
+            if(action.Length == 3 && res)
+            {
+                ligne = int.Parse(action[0].ToString());
+            }
+            else if(action.Length == 4 && res)
+            {
+                ligne = int.Parse(action.Substring(0, 2));
+            }
 
-            res = (action.Length == 3);
-            res = (char.IsLetter(action[1]) && res);
-
-            int ligne = int.Parse(action[0].ToString());
             int colonne = action[1] - 'A' - 1;
             int point = int.Parse(action[2].ToString());
 
