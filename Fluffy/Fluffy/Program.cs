@@ -15,9 +15,10 @@ namespace Fluffy
             // VARIABLES
             string teamName = "Comic Sans Fluffy ";
             string server   = "172.30.7.16";
-            int port        = 9877;
+            int port        = 9204;
 
-            // TESTING 
+            // TESTING
+            Console.WriteLine(teamName);
             Console.WriteLine("Server: " + server);
             //server = Console.ReadLine();
             Console.WriteLine("Port: " + port);
@@ -27,6 +28,7 @@ namespace Fluffy
             FSocket socket = new FSocket(server, port);
             socket.Connect();
             Thread.Sleep(500);
+            
             socket.Send(teamName);
 
             // RECEPTION INFO PLAYER
@@ -52,6 +54,7 @@ namespace Fluffy
                 plateau.Init(infoMap.Split('=')[1]);
             }
             plateau.Show();
+            IAInit ia = new IAInit();
             
             // DEBUT DU JEU
             bool isActive = true; // Etat de la partie
@@ -67,7 +70,8 @@ namespace Fluffy
                 if (code == "10")
                 {
                     // Genere un coup
-                    string coup = ""; // TODO: RECEPTION DU CODE A JOUER
+                    IAAction ia_action = new IAAction();
+                    string coup = ia_action.SendAction(); // TODO: RECEPTION DU CODE A JOUER
                     socket.Send(coup);
                     Console.WriteLine("ENVOI : " + coup);
                 }
