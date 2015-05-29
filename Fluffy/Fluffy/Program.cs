@@ -13,7 +13,7 @@ namespace Fluffy
         static void Main(string[] args)
         {
             // VARIABLES
-            string teamName = "Comic Sans Fluffy " + new Random().Next(10);
+            string teamName = "Comic Sans Fluffy ";
             string server   = "172.30.7.16";
             int port        = 9877;
 
@@ -36,6 +36,7 @@ namespace Fluffy
             else
                 joueur.Id = 2;
             Console.WriteLine("ID JOUEUR : " + joueur.Id);
+            socket.Send(teamName); // Send again
 
             // RECEPTION INFO MAP
             Plateau plateau = Plateau.getInstance();
@@ -57,7 +58,7 @@ namespace Fluffy
                 if (code == "10")
                 {
                     // Genere un coup
-                    string coup = "";
+                    string coup = ""; // TODO: RECEPTION DU CODE A JOUER
                     socket.Send(coup);
                     Console.WriteLine("ENVOI : " + coup);
                 }
@@ -77,7 +78,7 @@ namespace Fluffy
                     }
                     
                     // Update map
-                    // ...
+                    // TODO: METTRE A JOUR
 
                 }
                 // 88- Partie Terminée, vous avez perdu/gagné + score
