@@ -30,14 +30,17 @@ namespace Fluffy
             // RECEPTION INFO PLAYER
             Joueur joueur = new Joueur();
             string infoJoueur = socket.Receive();
-            infoJoueur = "Vous êtes le Joueur 1 (ROUGE), attente suite ...";
+            infoJoueur = "Vous êtes le Joueur 1 (ROUGE), attente suite ..."; // TODO: remove
             if (infoJoueur.IndexOf("eur ") > 0)
                 joueur.Id = int.Parse(infoJoueur.Substring(infoJoueur.IndexOf("eur ") + 4, 1));
             else
                 joueur.Id = 2;
 
-
-            
+            // RECEPTION INFO MAP
+            Plateau plateau = Plateau.getInstance();
+            string infoMap = socket.Receive();
+            plateau.Init(infoMap.Split('=')[1]);
+            Console.WriteLine(infoMap);
             
             // DEBUT DU JEU
             string begin = socket.Receive();

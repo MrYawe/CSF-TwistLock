@@ -20,7 +20,7 @@ namespace Fluffy
 
         }
 
-        public void init(string map)
+        public void Init(string map)
         {
             string[] mesLignes = map.Split('|');
             this.nbLignes = mesLignes.Count()-1;
