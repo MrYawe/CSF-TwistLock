@@ -21,6 +21,8 @@ namespace Fluffy
                 Conteneur cont = Plateau.getInstance().conteneurs[ligne,colonne];
                 cont.coins[point].statut = Point.status.ME;
 
+                IAInit.freePoints.Remove(cont.coins[point]);
+
                 int pointEnnemi = 0;
                 int pointMoi = 0;
 

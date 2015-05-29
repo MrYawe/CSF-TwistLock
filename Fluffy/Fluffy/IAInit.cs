@@ -34,8 +34,8 @@ namespace Fluffy
             }*/
 
             freePoints = Plateau.getInstance().points;
-            SortPoint sp = new SortPoint();
-            freePoints.Sort(sp);
+            /*SortPoint sp = new SortPoint();
+            freePoints.Sort(sp);*/
         }
 
         public class SortPoint : IComparer<Point>

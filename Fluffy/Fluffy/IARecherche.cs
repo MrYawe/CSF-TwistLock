@@ -17,12 +17,12 @@ namespace Fluffy
         {
             Point pt = IAInit.freePoints[0];
             List<Conteneur> ptParents = pt.conteneurs;
-            String res = ptParents[0].ligne.ToString() + ptParents[0].colonne.ToString();
+            String res = (ptParents[0].ligne+1).ToString() + Plateau.intToAscii(ptParents[0].colonne+1);
             for (int i = 0; i < ptParents[0].coins.Length; i++)
             {
                 if (ptParents[0].coins[i] == pt)
                 {
-                    res += i;
+                    res += i+1;
                 }
             }
 
@@ -31,21 +31,23 @@ namespace Fluffy
                 List<Conteneur> parents = IAInit.freePoints[i].conteneurs;
                 for (int j = 0; j < parents.Count; j++)
                 {
-                    String temp = parents[j].ligne.ToString() + parents[j].colonne.ToString();
+                    String temp = (parents[j].ligne+1).ToString() + Plateau.intToAscii(parents[j].colonne+1);
                     Point ptTemp = IAInit.freePoints[i];
                     for (int k = 0; k < ptParents[0].coins.Length; k++)
                     {
                         if (ptParents[0].coins[k] == ptTemp)
                         {
-                            temp += k;
+                            temp += k+1;
                         }
                     }
                     if (ConteneurPrenable(parents[j]) && IAInit.freePoints[i].valeur > ptTemp.valeur && isActionValid(temp))
                     {
                         res = temp;
+                        pt = ptTemp;
                     }
                 }
             }
+            IAInit.freePoints.Remove(pt);
             return res;
         }
 

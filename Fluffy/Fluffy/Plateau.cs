@@ -30,7 +30,7 @@ namespace Fluffy
 
             for (int i = 0; i < nbPoints; i++ )
             {
-                points.Add(new Point());
+                points.Add(new Point(i));
             }
            
 
@@ -48,9 +48,9 @@ namespace Fluffy
             return ((int)ascii) - 65; 
         }
 
-        public static int intToAscii(int pos)
+        public static char intToAscii(int pos)
         {
-            return (Char)(pos+65);
+            return (char)(pos+65);
         }
         public static Plateau getInstance()
         {

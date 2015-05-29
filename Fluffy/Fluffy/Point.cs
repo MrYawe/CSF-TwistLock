@@ -12,12 +12,14 @@ namespace Fluffy
         public int valeur { get; set; }
         public status statut { get; set; } 
         public List<Conteneur> conteneurs { get; set;}
+        public int id { get; set; }
         
-        public Point()
+        public Point(int id)
         {
             this.statut = status.NONE;
             this.valeur = 0;
             this.conteneurs = new List<Conteneur>();
+            this.id = id;
         }
 
         public void changeStatus(status stat)
