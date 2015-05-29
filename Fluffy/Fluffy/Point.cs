@@ -35,5 +35,37 @@ namespace Fluffy
         {
             conteneurs.Add(cont);
         }
+
+        public override bool Equals(object obj)
+        {
+            bool res = false;
+
+            if(obj is Point)
+            {
+                Point point = (Point)obj;
+
+                if(point.id == this.id)
+                {
+                    res = true;
+                }
+            }
+
+            return res;
+        }
+
+        public override int GetHashCode()
+        {
+            return this.id;
+        }
+
+        public static bool operator == (Point p1, Point p2)
+        {
+            return p1.id == p2.id;
+        }
+
+        public static bool operator != (Point p1, Point p2)
+        {
+            return p1.id != p2.id;
+        }
     }
 }
