@@ -23,9 +23,9 @@ namespace Fluffy
         public void init(string map)
         {
             string[] mesLignes = map.Split('|');
-            int nbLigne = mesLignes.Count()-1;
-            int nbColonne =mesLignes[0].Split(':').Count();
-            int nbPoints = (nbLigne+1)*(nbColonne+1);
+            this.nbLignes = mesLignes.Count()-1;
+            this.nbColonnes =mesLignes[0].Split(':').Count();
+            int nbPoints = (this.nbLignes+1)*(this.nbColonnes+1);
 
             for (int i = 0; i < nbPoints; i++ )
             {
@@ -33,16 +33,24 @@ namespace Fluffy
             }
            
 
-            for (int lin = 0; lin < nbLigne; lin++ )
+            for (int lin = 0; lin < this.nbLignes; lin++ )
             {
                 string[] valeurs = mesLignes[lin].Split(':');
-                for (int col = 0; col < nbColonne; col++)
+                for (int col = 0; col < this.nbColonnes; col++)
                 {
                     conteneurs[lin][col] = new Conteneur(lin, col, int.Parse(valeurs[col]));
                 }
             }
         }
 
+        public static int asciiToInt(char ascii) {
+            return ((int)ascii) - 65; 
+        }
+
+        public static int intToAscii(int pos)
+        {
+            return (Char)(pos+65);
+        }
         public static Plateau getInstance()
         {
          
