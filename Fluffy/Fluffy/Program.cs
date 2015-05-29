@@ -89,6 +89,8 @@ namespace Fluffy
                     {
                         Console.WriteLine(ex.Message);
                     }
+                    IAAction iac = new IAAction();
+                    iac.recieveAction(enCoup);
                     plateau.pointChanged(enCoup, Point.status.YOU);
                     // Update map
                     // TODO: METTRE A JOUR

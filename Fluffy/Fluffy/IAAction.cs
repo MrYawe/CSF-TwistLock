@@ -45,18 +45,18 @@ namespace Fluffy
                     if (pointEnnemi > pointMoi)
                     {
                         c.statut = Point.status.YOU;
-                        c.coins[0].valeur -= cont.valeur;
-                        c.coins[1].valeur -= cont.valeur;
-                        c.coins[2].valeur -= cont.valeur;
-                        c.coins[3].valeur -= cont.valeur;
+                        c.coins[0].valeur -= c.valeur;
+                        c.coins[1].valeur -= c.valeur;
+                        c.coins[2].valeur -= c.valeur;
+                        c.coins[3].valeur -= c.valeur;
                     }
                     else if (pointEnnemi < pointMoi)
                     {
                         c.statut = Point.status.ME;
-                        c.coins[0].valeur += cont.valeur;
-                        c.coins[1].valeur += cont.valeur;
-                        c.coins[2].valeur += cont.valeur;
-                        c.coins[3].valeur += cont.valeur;
+                        c.coins[0].valeur += c.valeur;
+                        c.coins[1].valeur += c.valeur;
+                        c.coins[2].valeur += c.valeur;
+                        c.coins[3].valeur += c.valeur;
                     }
                     else
                     {
