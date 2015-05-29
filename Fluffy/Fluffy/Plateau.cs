@@ -99,5 +99,16 @@ namespace Fluffy
             points[point].changeStatus(joueur);
         }
 
+        public void Show()
+        {
+            for (int i = 0; i < conteneurs.GetLength(0); i++)
+            {
+                for (int j = 0; j < conteneurs.GetLength(1); j++)
+                {
+                    Console.Write(conteneurs[i,j].valeur + " | ");
+                }
+                Console.WriteLine("");
+            }
+        }
     }
 }
