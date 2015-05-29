@@ -40,7 +40,7 @@ namespace Fluffy
                             temp += k+1;
                         }
                     }
-                    if (ConteneurPrenable(parents[j]) && IAInit.freePoints[i].valeur > ptTemp.valeur && isActionValid(temp))
+                    if (ConteneurPrenable(parents[j]) && ptTemp.valeur > pt.valeur && isActionValid(temp))
                     {
                         res = temp;
                         pt = ptTemp;
