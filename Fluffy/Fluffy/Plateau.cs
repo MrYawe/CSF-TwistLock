@@ -17,10 +17,10 @@ namespace Fluffy
 
         public Plateau()
         {
-           
+            points = new List<Point>();
         }
 
-        public void init(string map)
+        public void Init(string map)
         {
             string[] mesLignes = map.Split('|');
             this.nbLignes = mesLignes.Count()-1;
@@ -62,5 +62,42 @@ namespace Fluffy
 
             return Plateau.instance;
         }
+
+        public void pointChanged(String pos, Point.status joueur)
+        {
+            int ligne;
+            int colonne;
+            int coin;
+            int point = -1;
+            if (pos.Count() == 4) {
+                ligne = 9;
+                colonne =  Plateau.asciiToInt(pos[2]);
+                coin = int.Parse(pos.Substring(3, 1)) - 1;
+            }
+            else
+            {
+                ligne = int.Parse(pos.Substring(1, 1)) - 1;
+                colonne = Plateau.asciiToInt(pos[1]);
+                coin = int.Parse(pos.Substring(2, 1)) - 1;
+            }
+            switch (coin)
+            {
+                case 1:
+                    point = (ligne * nbColonnes) + colonne;
+                    break;
+                case 2:
+                    point = (ligne * nbColonnes) + colonne + 1;
+                    break;
+                case 3 :
+                    point = ((ligne + 1) * nbColonnes) + colonne;
+                    break;
+                case 4 :
+                    point = ((ligne + 1) * nbColonnes) + colonne +1;
+                    break;
+            }
+
+            points[point].changeStatus(joueur);
+        }
+
     }
 }
