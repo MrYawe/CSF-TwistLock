@@ -12,7 +12,7 @@ namespace Fluffy
         {
             bool res = true;
 
-            if(isActionValid(action))
+            if(IARecherche.isActionValid(action))
             {
                 int ligne = int.Parse(action[0].ToString());
                 int colonne = action[1] - 'A' - 1;
@@ -65,22 +65,10 @@ namespace Fluffy
             return res;
         }
 
-        public bool isActionValid(string action)
+        public String SendAction()
         {
-            bool res;
-
-            res = (action.Length == 3);
-            res = (char.IsLetter(action[1]) && res);
-
-            int ligne = int.Parse(action[0].ToString());
-            int colonne = action[1] - 'A' - 1;
-            int point = int.Parse(action[2].ToString());
-
-            res = (ligne >= 0 && ligne <= Plateau.getInstance().nbLignes - 1 && res);
-            res = (colonne >= 0 && colonne <= Plateau.getInstance().nbColonnes - 1 && res);
-            res = (point >= 0 && point <= 3 && res);
-
-            return res;
+            IARecherche search = new IARecherche();
+            return search.searchPoint();
         }
     }
 }
