@@ -76,7 +76,7 @@ namespace Fluffy
                     {
                         Console.WriteLine(ex.Message);
                     }
-                    
+                    plateau.pointChanged(enCoup, Point.status.YOU);
                     // Update map
                     // TODO: METTRE A JOUR
 
