@@ -45,22 +45,51 @@ namespace Fluffy
             
             // DEBUT DU JEU
             bool isActive = true; // Etat de la partie
-            int turn = joueur.Id;
             while(isActive)
             {
-                if (turn == 1)
+                string response = socket.Receive();
+                string code = "";
+                if (response.Length > 2)
+                    code = response.Substring(0, 2);
+                Console.WriteLine(response);
+
+                // 10- Notre tour
+                if (code == "10")
                 {
                     // Genere un coup
                     string coup = "";
                     socket.Send(coup);
                     Console.WriteLine("ENVOI : " + coup);
                 }
-                else
+                // 20- Tour ennemi
+                else if(code == "20")
                 {
                     // Reception du coup ennemi
-                    string enCoup = socket.Receive();
+                    string enCoup = "";
+                    try
+                    {
+                        enCoup = response.Split(':')[2].Substring(0, response.IndexOf('\n'));
+                        Console.WriteLine("RECEPTION : " + enCoup);
+                    }
+                    catch(Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                    
+                    // Update map
+                    // ...
 
                 }
+                // 88- Partie Terminée, vous avez perdu/gagné + score
+                else if(code == "88")
+                {
+                    isActive = true;
+                }
+
+                // Ignore
+                // 21- Coup joué inégal
+                // 22- Coup adversaire illégal
+                // 50- Vous ne pouvez plus jouer
             }
 
             Console.ReadLine();
