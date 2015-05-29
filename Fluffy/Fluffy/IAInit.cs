@@ -13,28 +13,45 @@ namespace Fluffy
         public IAInit()
         {
             freeConteneurs = Plateau.getInstance().conteneurs;
-            SortConteneur sc = new SortConteneur();
-            Array.Sort(freeConteneurs, sc);
+
+            for (int i = 0; i < freeConteneurs.GetLength(0); i++)
+            {
+                for (int j = 0; j < freeConteneurs.GetLength(1); j++)
+                {
+                    for(int k = 0; k < freeConteneurs.GetLength(0); k++)
+                    {
+                        for(int l = 0; l < freeConteneurs.GetLength(1); l++)
+                        {
+                            if(freeConteneurs[i][j].valeur < freeConteneurs[k][l].valeur)
+                            {
+                                Conteneur temp = new Conteneur(freeConteneurs[i][j].valeur, freeConteneurs[i][j].statut, freeConteneurs[i][j].coins);
+                                freeConteneurs[i][j] = freeConteneurs[k][l];
+                                freeConteneurs[k][l] = temp;
+                            }
+                        }
+                    }
+                }
+            }
 
             freePoints = Plateau.getInstance().points;
             SortPoint sp = new SortPoint();
             freePoints.Sort(sp);
         }
-    }
 
-    public class SortConteneur : IComparer<Conteneur[]>
-    {
-        public int Compare(Conteneur x, Conteneur y)
+        public class SortConteneur : IComparer<Conteneur[]>
         {
-            return y.valeur - x.valeur;
+            public int Compare(Conteneur x, Conteneur y)
+            {
+                return y.valeur - x.valeur;
+            }
         }
-    }
 
-    public class SortPoint : IComparer<Point>
-    {
-        public int Compare(Point x, Point y)
+        public class SortPoint : IComparer<Point>
         {
-            return y.valeur - x.valeur;
+            public int Compare(Point x, Point y)
+            {
+                return y.valeur - x.valeur;
+            }
         }
     }
 }
