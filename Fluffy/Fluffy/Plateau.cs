@@ -10,21 +10,22 @@ namespace Fluffy
     {
         public static Plateau instance {get;set;}
         public List<Point> points {get;set;}
-        public Conteneur[][] conteneurs {get;set;}
+        public Conteneur[,] conteneurs {get;set;}
         public int nbColonnes {get;set;}
         public int nbLignes {get;set;}
 
 
         public Plateau()
         {
-
+           
         }
 
         public void init(string map)
         {
             string[] mesLignes = map.Split('|');
             this.nbLignes = mesLignes.Count()-1;
-            this.nbColonnes =mesLignes[0].Split(':').Count();
+            this.nbColonnes = mesLignes[0].Split(':').Count();
+            this.conteneurs = new Conteneur[this.nbLignes, this.nbColonnes];
             int nbPoints = (this.nbLignes+1)*(this.nbColonnes+1);
 
             for (int i = 0; i < nbPoints; i++ )
@@ -38,7 +39,7 @@ namespace Fluffy
                 string[] valeurs = mesLignes[lin].Split(':');
                 for (int col = 0; col < this.nbColonnes; col++)
                 {
-                    conteneurs[lin][col] = new Conteneur(lin, col, int.Parse(valeurs[col]));
+                    conteneurs[lin, col] = new Conteneur(lin, col, int.Parse(valeurs[col]));
                 }
             }
         }
