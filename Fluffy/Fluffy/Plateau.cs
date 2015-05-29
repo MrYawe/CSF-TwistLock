@@ -8,11 +8,11 @@ namespace Fluffy
 {
     class Plateau
     {
-        private static Plateau instance;
-        private List<Point> points;
-        private Conteneur[][] conteneurs;
-        private int nbColonnes;
-        private int nbLignes;
+        public static Plateau instance {get;set;}
+        public List<Point> points {get;set;}
+        public Conteneur[][] conteneurs {get;set;}
+        public int nbColonnes {get;set;}
+        public int nbLignes {get;set;}
 
 
         public Plateau()
@@ -38,7 +38,7 @@ namespace Fluffy
                 string[] valeurs = mesLignes[lin].Split(':');
                 for (int col = 0; col < nbColonne; col++)
                 {
-                    conteneurs[lin][col] = new Conteneur(lin, col, (int)valeurs[col]);
+                    conteneurs[lin][col] = new Conteneur(lin, col, int.Parse(valeurs[col]));
                 }
             }
         }

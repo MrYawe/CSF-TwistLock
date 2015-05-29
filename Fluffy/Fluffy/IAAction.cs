@@ -38,7 +38,7 @@ namespace Fluffy
 
                 if (pointEnnemi > pointMoi)
                 {
-                    cont.statut = Conteneur.status.YOU;
+                    cont.statut = Point.status.YOU;
                     cont.coins[0].valeur -= cont.valeur;
                     cont.coins[1].valeur -= cont.valeur;
                     cont.coins[2].valeur -= cont.valeur;
@@ -46,7 +46,7 @@ namespace Fluffy
                 }
                 else if (pointEnnemi < pointMoi)
                 {
-                    cont.statut = Conteneur.status.ME;
+                    cont.statut = Point.status.ME;
                     cont.coins[0].valeur += cont.valeur;
                     cont.coins[1].valeur += cont.valeur;
                     cont.coins[2].valeur += cont.valeur;
@@ -54,7 +54,7 @@ namespace Fluffy
                 }
                 else
                 {
-                    cont.statut = Conteneur.status.NONE;
+                    cont.statut = Point.status.NONE;
                 }
             }
             else
@@ -76,8 +76,8 @@ namespace Fluffy
             int colonne = action[1] - 'A' - 1;
             int point = int.Parse(action[2].ToString());
 
-            res = (ligne >= 0 && ligne <= Plateau.getInstance().ligne - 1 && res);
-            res = (colonne >= 0 && colonne <= Plateau.getInstance().colonne - 1 && res);
+            res = (ligne >= 0 && ligne <= Plateau.getInstance().nbLignes - 1 && res);
+            res = (colonne >= 0 && colonne <= Plateau.getInstance().nbColonnes - 1 && res);
             res = (point >= 0 && point <= 3 && res);
 
             return res;
