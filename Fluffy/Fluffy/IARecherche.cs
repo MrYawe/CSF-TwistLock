@@ -28,14 +28,14 @@ namespace Fluffy
 
             for (int i = 0; i < IAInit.freePoints.Count; i++)
             {
-                List<Conteneur> parents = IAInit.freePoints[i].conteneurs;
+                Point ptTemp = IAInit.freePoints[i];
+                List<Conteneur> parents = ptTemp.conteneurs;
                 for (int j = 0; j < parents.Count; j++)
                 {
                     String temp = (parents[j].ligne+1).ToString() + Plateau.intToAscii(parents[j].colonne+1);
-                    Point ptTemp = IAInit.freePoints[i];
-                    for (int k = 0; k < ptParents[0].coins.Length; k++)
+                    for (int k = 0; k < parents[0].coins.Length; k++)
                     {
-                        if (ptParents[0].coins[k] == ptTemp)
+                        if (parents[0].coins[k] == ptTemp)
                         {
                             temp += k+1;
                         }

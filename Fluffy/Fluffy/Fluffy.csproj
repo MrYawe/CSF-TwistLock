@@ -44,6 +44,7 @@
     <Compile Include="Conteneur.cs" />
     <Compile Include="FSocket.cs" />
     <Compile Include="IAAction.cs" />
+    <Compile Include="IAAleat.cs" />
     <Compile Include="IAInit.cs" />
     <Compile Include="IARecherche.cs" />
     <Compile Include="IFSocket.cs" />
