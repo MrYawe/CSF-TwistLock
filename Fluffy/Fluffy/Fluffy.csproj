@@ -41,9 +41,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Conteneur.cs" />
     <Compile Include="FSocket.cs" />
+    <Compile Include="IAAction.cs" />
+    <Compile Include="IAInit.cs" />
+    <Compile Include="IARecherche.cs" />
     <Compile Include="IFSocket.cs" />
     <Compile Include="Joueur.cs" />
+    <Compile Include="Plateau.cs" />
+    <Compile Include="Point.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
