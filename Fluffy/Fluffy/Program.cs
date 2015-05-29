@@ -72,9 +72,8 @@ namespace Fluffy
                     // Genere un coup
                     IAAction ia_action = new IAAction();
                     string coup = ia_action.SendAction(); // TODO: RECEPTION DU CODE A JOUER
-                    String res = coup.Trim();
-                    socket.Send(res);
-                    Console.WriteLine("ENVOI : " + res + " taille : " + res.Count());
+                    socket.Send(coup);
+                    Console.WriteLine("ENVOI : " + coup + " taille : " + coup.Count());
                 }
                 // 20- Tour ennemi
                 else if(code == "20")

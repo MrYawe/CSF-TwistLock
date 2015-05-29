@@ -43,5 +43,29 @@ namespace Fluffy
             this.coins[2] = coins[2];
             this.coins[3] = coins[3];
         }
+
+        private void coinChanged(){
+            int nbme = 0;
+            int nbyou = 0;
+            for(int i = 0; i < 4; i++)
+            {
+                if (coins[i].statut == Point.status.ME)
+                    nbme++;
+                else if (coins[i].statut == Point.status.YOU)
+                    nbyou++;
+            }
+            if (nbme > nbyou){
+                this.statut = Point.status.ME;
+            }
+            else if (nbyou > nbme)
+            {
+                this.statut = Point.status.YOU;
+            }
+            else
+            {
+                this.statut = Point.status.NONE;
+            }
+                
+        }
     }
 }
