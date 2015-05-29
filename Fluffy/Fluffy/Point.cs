@@ -17,7 +17,5 @@ namespace Fluffy
             this.statut = status.NONE;
             this.valeur = 0;
         }
-
-        
     }
 }
