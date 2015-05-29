@@ -13,14 +13,14 @@ namespace Fluffy
         {
             // VARIABLES
             string teamName = "Comic Sans Fluffy " + new Random().Next(10);
-            string server;
-            int port;
+            string server   = "172.30.7.16";
+            int port        = 9867;
 
             // TESTING 
             Console.Write("Server: ");
-            server = Console.ReadLine();
+            //server = Console.ReadLine();
             Console.Write("Port: ");
-            port = int.Parse(Console.ReadLine());
+            //port = int.Parse(Console.ReadLine());
 
             // CONNECTION TO THE SERVER
             FSocket socket = new FSocket(server, port);

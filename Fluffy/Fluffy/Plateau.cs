@@ -17,7 +17,7 @@ namespace Fluffy
 
         public Plateau()
         {
-
+            points = new List<Point>();
         }
 
         public void Init(string map)
