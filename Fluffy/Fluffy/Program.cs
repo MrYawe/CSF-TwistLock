@@ -15,30 +15,27 @@ namespace Fluffy
             string teamName = "Comic Sans Fluffy " + new Random().Next(10);
             string server;
             int port;
-            bool isServer;
 
             // TESTING 
-            Console.Write("server (1) or client (2) ? ");
-            isServer = int.Parse(Console.ReadLine()) == 1;
-            Console.Write("server: ");
+            Console.Write("Server: ");
             server = Console.ReadLine();
-            Console.Write("port: ");
+            Console.Write("Port: ");
             port = int.Parse(Console.ReadLine());
 
             // CONNECTION TO THE SERVER
-            FSocket socket = new FSocket();
-            socket.Connect(server, port);
-            if(!isServer)
-            {
-                socket.Send(teamName);
-            }
-            else
-            {
-                List<string> teams = new List<string>();
-                string line = socket.Receive();
+            FSocket socket = new FSocket(server, port);
+            socket.Connect();
+            socket.Send(teamName);
 
-            }
+            // RECEPTION INFO PLAYER
+            string infoPlayer = socket.Receive();
+            Console.WriteLine("Infos player : " + infoPlayer);
 
+            // DEBUT DU JEU
+            string begin = socket.Receive();
+            Console.WriteLine("Infos partie : " + begin);
+
+            Console.ReadLine();
         }
     }
 }
