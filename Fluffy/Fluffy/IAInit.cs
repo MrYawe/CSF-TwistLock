@@ -14,7 +14,7 @@ namespace Fluffy
         {
             freeConteneurs = Plateau.getInstance().conteneurs;
 
-            for (int i = 0; i < freeConteneurs.GetLength(0); i++)
+            /*for (int i = 0; i < freeConteneurs.GetLength(0); i++)
             {
                 for (int j = 0; j < freeConteneurs.GetLength(1); j++)
                 {
@@ -31,7 +31,7 @@ namespace Fluffy
                         }
                     }
                 }
-            }
+            }*/
 
             freePoints = Plateau.getInstance().points;
             SortPoint sp = new SortPoint();
