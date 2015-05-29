@@ -11,9 +11,13 @@ namespace Fluffy
         public int valeur { get; set; }
         public Point.status statut { get; set; }
         public Point[] coins { get; set; }
+        public int ligne { get; set; }
+        public int colonne { get; set; }
 
         public Conteneur(int ligne, int colonne, int valeur)
         {
+            this.ligne = ligne;
+            this.colonne = colonne;
             this.statut = Point.status.NONE;
             this.valeur = valeur;
             int nbcolonne = Plateau.getInstance().nbColonnes;
