@@ -8,32 +8,27 @@ namespace Fluffy
 {
     class Joueur
     {
-        private string id;
-        private string couleur;
-        private int nbTwistLock=20;
-
-
         public enum status { NONE, ONE, TWO };
 
-
-
-        // Accessor
-        public string id
+        public int Id
+        {
+            get;
+            set;
+        }
+        public string Couleur
+        {
+            get;
+            set;
+        }
+        public int NbTwistLock
         {
             get;
             set;
         }
 
-        public string couleur
+        public Joueur()
         {
-            get;
-            set;
-        }
-
-        public int nbTwistLock
-        {
-            get;
-            set;
+            NbTwistLock = 20;
         }
     }
 }

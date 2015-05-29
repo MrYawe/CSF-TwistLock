@@ -10,71 +10,77 @@ namespace FluffyNet
 {
     public class FSocket : IFSocket
     {
-        private string _server;
-        private int _port;
-
-        private Socket Socket
+        private Socket ConnectSocket
         {
             get;
             set;
         }
         public string Server
         {
-            get { return _server; }
+            get;
+            set;
         }
         public int Port
         {
-            get { return _port; }
+            get;
+            set;
         }
 
-        public FSocket()
+        public FSocket(string server, int port)
         {
+            Server = server;
+            Port = port;
+            IPEndPoint ipeConnect = new IPEndPoint(IPAddress.Parse(server), port);
+            ConnectSocket = new Socket(ipeConnect.AddressFamily, SocketType.Dgram, ProtocolType.Udp);
         }
 
-        public void Connect(string server, int port)
+        public void Connect()
         {
-            if(string.IsNullOrEmpty(server))
+            try
             {
-                Console.WriteLine("Le serveur est vide !");
-                return;
+                // Connect to remote ip and port
+                IPEndPoint epRemote = new IPEndPoint(IPAddress.Parse(Server), Port);
+                ConnectSocket.Connect(epRemote);
+
             }
-
-            if(port <= 0 || port > 65556)
+            catch(Exception ex)
             {
-                Console.WriteLine("Port invalide !");
-                return;
-            }
-
-            // Get host related information.
-            _server = server;
-            _port = port;
-            IPHostEntry hostEntry = Dns.GetHostEntry(server);
-
-            // Loop through the AddressList to obtain the supported AddressFamily. This is to avoid
-            // an exception that occurs when the host IP Address is not compatible with the address family
-            // (typical in the IPv6 case).
-            foreach (IPAddress address in hostEntry.AddressList)
-            {
-                IPEndPoint ipe = new IPEndPoint(address, port);
-                Socket tempSocket = new Socket(ipe.AddressFamily, SocketType.Stream, ProtocolType.Udp);
-
-                tempSocket.Connect(ipe);
-
-                if (tempSocket.Connected)
-                {
-                    Socket = tempSocket;
-                    break;
-                }
-                else
-                {
-                    continue;
-                }
+                Console.WriteLine("ERREUR : " + ex.Message);
             }
         }
 
         public void Send(string value)
         {
+            ConnectSocket.Send(GetBytes(value));
+        }
 
+        public string Receive()
+        {
+            byte[] buffer = new byte[256];
+            try
+            {
+                int i = ConnectSocket.Receive(buffer);
+                return Encoding.UTF8.GetString(buffer);
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return "";
+            }
+        }
+
+        public static byte[] GetBytes(string str)
+        {
+            byte[] bytes = new byte[str.Length * sizeof(char)];
+            System.Buffer.BlockCopy(str.ToCharArray(), 0, bytes, 0, bytes.Length);
+            return bytes;
+        }
+
+        public static string GetString(byte[] bytes)
+        {
+            char[] chars = new char[bytes.Length / sizeof(char)];
+            System.Buffer.BlockCopy(bytes, 0, chars, 0, bytes.Length);
+            return new string(chars);
         }
     }
 }

@@ -8,6 +8,8 @@ namespace FluffyNet
 {
     public interface IFSocket
     {
-        
+        void Connect();
+        void Send(string value);
+        string Receive();
     }
 }

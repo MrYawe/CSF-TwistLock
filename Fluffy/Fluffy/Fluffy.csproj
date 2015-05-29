@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="FSocket.cs" />
     <Compile Include="IFSocket.cs" />
+    <Compile Include="Joueur.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

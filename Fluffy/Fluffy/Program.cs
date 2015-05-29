@@ -28,9 +28,17 @@ namespace Fluffy
             socket.Send(teamName);
 
             // RECEPTION INFO PLAYER
-            string infoPlayer = socket.Receive();
-            Console.WriteLine("Infos player : " + infoPlayer);
+            Joueur joueur = new Joueur();
+            string infoJoueur = socket.Receive();
+            infoJoueur = "Vous êtes le Joueur 1 (ROUGE), attente suite ...";
+            if (infoJoueur.IndexOf("eur ") > 0)
+                joueur.Id = int.Parse(infoJoueur.Substring(infoJoueur.IndexOf("eur ") + 4, 1));
+            else
+                joueur.Id = 2;
 
+
+            
+            
             // DEBUT DU JEU
             string begin = socket.Receive();
             Console.WriteLine("Infos partie : " + begin);
