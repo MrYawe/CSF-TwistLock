@@ -26,7 +26,7 @@ namespace Fluffy
             // CONNECTION TO THE SERVER
             FSocket socket = new FSocket(server, port);
             socket.Connect();
-            Thread.Sleep(2000);
+            Thread.Sleep(500);
             socket.Send(teamName);
 
             // RECEPTION INFO PLAYER
@@ -41,9 +41,17 @@ namespace Fluffy
             // RECEPTION INFO MAP
             Plateau plateau = Plateau.getInstance();
             string infoMap = socket.Receive();
-            Console.WriteLine("MAP 1 : " + infoMap);
-            plateau.Init(infoMap.Split('=')[1]);
-            Console.WriteLine("MAP 2 : " + infoMap.Split('=')[1]);
+            try
+            {
+                Console.WriteLine("MAP : " + infoMap.Split('=')[1]);
+                plateau.Init(infoMap.Split('=')[1]);
+            }
+            catch
+            {
+                infoMap = socket.Receive();
+                plateau.Init(infoMap.Split('=')[1]);
+            }
+            plateau.Show();
             
             // DEBUT DU JEU
             bool isActive = true; // Etat de la partie
