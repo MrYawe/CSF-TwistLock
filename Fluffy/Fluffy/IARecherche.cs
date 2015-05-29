@@ -116,11 +116,11 @@ namespace Fluffy
             
             if(action.Length == 3 && res)
             {
-                ligne = int.Parse(action[0].ToString());
+                ligne = int.Parse(action[0].ToString()) - 1;
             }
             else if(action.Length == 4 && res)
             {
-                ligne = int.Parse(action.Substring(0, 2));
+                ligne = int.Parse(action.Substring(0, 2)) - 1;
             }
 
             if(action.Length == 3 && res)
@@ -134,17 +134,17 @@ namespace Fluffy
 
             if (action.Length == 3 && res)
             {
-                point = int.Parse(action[2].ToString());
+                point = int.Parse(action[2].ToString()) - 1;
             }
             else if (action.Length == 4 && res)
             {
-                point = int.Parse(action[3].ToString());
+                point = int.Parse(action[3].ToString()) - 1;
             }
             
 
-            res = (ligne >= 0 && ligne <= Plateau.getInstance().nbLignes - 1 && res);
-            res = (colonne >= 0 && colonne <= Plateau.getInstance().nbColonnes - 1 && res);
-            res = (point >= 0 && point <= 3 && res);
+            res = (ligne >= 0 && ligne < Plateau.getInstance().nbLignes && res);
+            res = (colonne >= 0 && colonne < Plateau.getInstance().nbColonnes && res);
+            res = (point > 0 && point < 4 && res);
 
             return res;
         }

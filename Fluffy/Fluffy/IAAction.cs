@@ -14,9 +14,9 @@ namespace Fluffy
 
             if(IARecherche.isActionValid(action))
             {
-                int ligne = int.Parse(action.Length == 3 ? action[0].ToString() : action.Substring(0, 2));
+                int ligne = int.Parse(action.Length == 3 ? action[0].ToString() : action.Substring(0, 2)) - 1;
                 int colonne = action.Length == 3 ? action[1] - 'A' - 1 : action[2] - 'A' - 1;
-                int point = int.Parse(action.Length == 3 ? action[2].ToString() : action[3].ToString());
+                int point = int.Parse(action.Length == 3 ? action[2].ToString() : action[3].ToString()) - 1;
 
                 Conteneur cont = Plateau.getInstance().conteneurs[ligne,colonne];
                 
