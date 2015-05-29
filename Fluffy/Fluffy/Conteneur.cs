@@ -44,7 +44,7 @@ namespace Fluffy
             this.coins[3] = coins[3];
         }
 
-        private void coinChanged(){
+        public void coinChanged(){
             int nbme = 0;
             int nbyou = 0;
             for(int i = 0; i < 4; i++)

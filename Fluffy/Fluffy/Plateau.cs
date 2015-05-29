@@ -69,16 +69,17 @@ namespace Fluffy
             int colonne;
             int coin;
             int point = -1;
-            if (pos.Count() == 4) {
+            if (pos.Count() == 4)
+            {
                 ligne = 9;
-                colonne =  Plateau.asciiToInt(pos[2]);
-                coin = int.Parse(pos.Substring(3, 1)) - 1;
+                colonne = Plateau.asciiToInt(pos[2]);
+                coin = int.Parse(pos.Substring(3, 1));
             }
             else
             {
-                ligne = int.Parse(pos.Substring(1, 1)) - 1;
+                ligne = int.Parse(pos[0].ToString()) - 1;
                 colonne = Plateau.asciiToInt(pos[1]);
-                coin = int.Parse(pos.Substring(2, 1)) - 1;
+                coin = int.Parse(pos[2].ToString());
             }
             switch (coin)
             {
@@ -97,6 +98,27 @@ namespace Fluffy
             }
 
             points[point].changeStatus(joueur);
+            IAInit.freePoints.Remove(points[point]);
+            for (int i = 0; i < points[point].conteneurs.Count(); i++)
+            {
+                Conteneur c = points[point].conteneurs[i];
+                c.coinChanged();
+                if (c.statut == Point.status.YOU)
+                {
+                    c.coins[0].valeur -= c.valeur;
+                    c.coins[1].valeur -= c.valeur;
+                    c.coins[2].valeur -= c.valeur;
+                    c.coins[3].valeur -= c.valeur;
+                }
+                else if (c.statut == Point.status.ME)
+                {
+                    c.coins[0].valeur += c.valeur;
+                    c.coins[1].valeur += c.valeur;
+                    c.coins[2].valeur += c.valeur;
+                    c.coins[3].valeur += c.valeur;
+                }
+
+            }
         }
 
         public void Show()

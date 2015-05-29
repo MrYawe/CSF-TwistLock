@@ -15,7 +15,7 @@ namespace Fluffy
             // VARIABLES
             string teamName = "Comic Sans Fluffy ";
             string server   = "172.30.7.16";
-            int port        = 9204;
+            int port        = 10032;
 
             // TESTING
             Console.WriteLine(teamName);
@@ -71,6 +71,7 @@ namespace Fluffy
                 {
                     // Genere un coup
                     IAAction ia_action = new IAAction();
+                    //IAAleat ia_action = new IAAleat();
                     string coup = ia_action.SendAction(); // TODO: RECEPTION DU CODE A JOUER
                     socket.Send(coup);
                     Console.WriteLine("ENVOI : " + coup + " taille : " + coup.Count());
@@ -82,15 +83,13 @@ namespace Fluffy
                     string enCoup = "";
                     try
                     {
-                        enCoup = response.Split(':')[2].Substring(0, response.IndexOf('\n'));
+                        enCoup = response.Split(':')[2];
                         Console.WriteLine("RECEPTION : " + enCoup);
                     }
                     catch(Exception ex)
                     {
                         Console.WriteLine(ex.Message);
                     }
-                    IAAction iac = new IAAction();
-                    iac.recieveAction(enCoup);
                     plateau.pointChanged(enCoup, Point.status.YOU);
                     // Update map
                     // TODO: METTRE A JOUR
@@ -99,7 +98,7 @@ namespace Fluffy
                 // 88- Partie Terminée, vous avez perdu/gagné + score
                 else if(code == "88")
                 {
-                    isActive = true;
+                    isActive = false;
                 }
 
                 // Ignore
